@@ -1,24 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { useMyContext } from './context/myContext'
+import HomePage from './pages/HomePage'
+import TransactionPage from './pages/TransactionPage'
 function App() {
+  const { state } = useMyContext()
+
+  const privateRoutes = [
+    {
+      path: '/transaction',
+      component: TransactionPage
+    }
+  ]
+
+  const publicRoutes = [
+    {
+      path: '/',
+      component: HomePage
+    }
+  ]
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        {
+          !state.isAuthen && publicRoutes.map((el, index) => (
+            <Route key={index} exact path={el.path} component={el.component} />
+          ))
+        }
+        {
+          state.isAuthen && privateRoutes.map((el, index) => (
+            <Route key={index} exact path={el.path} component={el.component} />
+          ))
+        }
+        <Redirect to='/' />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

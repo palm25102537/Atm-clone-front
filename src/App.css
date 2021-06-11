@@ -1,38 +1,114 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgb(236, 236, 236);
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.app-sign-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 30px;
+}
+.sign-in-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sign-up-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sign-in-content {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.sign-in-button {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid white;
   color: white;
+  background-color: cornflowerblue;
+}
+.sign-in-button:hover {
+  border: 1px solid rgb(241, 161, 178);
+  background-color: white;
+  color: black;
 }
 
-.App-link {
-  color: #61dafb;
+.sign-in-button:focus {
+  border: 1px solid white;
+  color: black;
+  background-color: rgba(148, 251, 208, 0.801);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.sign-up-content {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up-button {
+  border: 1px solid white;
+  color: black;
+  background-color: rgba(148, 251, 208, 0.801);
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+}
+.sign-up-button:hover {
+  border: 1px solid cornflowerblue;
+  background-color: white;
+  color: black;
+}
+.sign-up-button:focus {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: white;
+  background-color: rgb(241, 161, 178);
+}
+
+.transaction-grid {
+  display: grid;
+  margin-top: 30px;
+  grid-template-columns: 25% 50% 25%;
+}
+
+.transacion-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (max-width: 500px) {
+  .app-sign-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 30px;
   }
-  to {
-    transform: rotate(360deg);
+  .sign-up-container {
+    margin-top: 50px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 }
