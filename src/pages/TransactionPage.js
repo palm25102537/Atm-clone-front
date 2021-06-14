@@ -22,6 +22,8 @@ function TransactionPage() {
 
   const [cashThatWeHave, setCashThatWehave] = useState([])
 
+  //ตั้งชื่อ function ควรเป็น verb เพื่อบอกว่าจะทำอะไร
+
   async function howMuchWeHaveCash() {
     const response = await axios.get('/cash')
     const { data: { cash } } = response
@@ -86,7 +88,8 @@ function TransactionPage() {
 
 
     if (selected === 'withdraw') {
-      let sumCashThatWehave = (cashThatWeHave[0].amount * 1000) + (cashThatWeHave[1].amount * 500) + (cashThatWeHave[0].amount * 100)
+      let sumCashThatWehave = (cashThatWeHave[0].amount * 1000) + (cashThatWeHave[1].amount * 500) + (cashThatWeHave[2].amount * 100)
+
       if (amount > sumCashThatWehave) return alert('Cannot make a transaction')
       let Onethousand = Math.floor(+amount / 1000)
       let remainfromOneThousand = +amount - (Onethousand * 1000)
@@ -114,9 +117,9 @@ function TransactionPage() {
       if (newBalanceOneHundred < 0) {
         return alert('Only left One thousand, or five hundred notes')
       }
-      await axios.put(`/cash/edit/${cashThatWeHave[0].id}`, { amount: newBalanceOneThousand })
-      await axios.put(`/cash/edit/${cashThatWeHave[1].id}`, { amount: newBalanceFiveHundred })
-      await axios.put(`/cash/edit/${cashThatWeHave[2].id}`, { amount: newBalanceOneHundred })
+      await axios.put(`/cash/edit/${cashThatWeHave[0].id}`, { amount: (newBalanceOneThousand < 0) ? 0 : newBalanceOneThousand })
+      await axios.put(`/cash/edit/${cashThatWeHave[1].id}`, { amount: (newBalanceFiveHundred < 0) ? 0 : newBalanceFiveHundred })
+      await axios.put(`/cash/edit/${cashThatWeHave[2].id}`, { amount: (newBalanceOneHundred < 0) ? 0 : newBalanceOneHundred })
       window.confirm(`You will receive \n
       One thousand Note : ${Onethousand} \n
       Five hundred Note : ${Fivehundred} \n

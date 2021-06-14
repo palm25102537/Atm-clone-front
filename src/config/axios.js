@@ -18,7 +18,7 @@ axios.interceptors.response.use(
   (err) => {
     if (err.response.status === 401) {
       clearToken();
-      alert('You are unauthorize')
+      alert('You are unauthorizeNa')
       window.location.assign('/')
       return
     }

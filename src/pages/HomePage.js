@@ -77,6 +77,15 @@ function HomePage() {
       email : ${email} \n
       balance : ${balance}
     `)
+    setSignUpInput({
+      username: '',
+      password: '',
+      confirmPassword: '',
+      email: '',
+      citizenId: '',
+      name: '',
+      surname: ''
+    })
   }
 
   return (
